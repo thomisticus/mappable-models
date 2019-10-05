@@ -87,32 +87,32 @@ trait HasNestedAttributes
             }
 
             $relation = $this->$methodName();
-
             if ($relation instanceof BelongsTo) {
                 if (!$this->saveBelongToNestedAttributes($relation, $stack)) {
                     return false;
                 }
             } else {
                 if ($relation instanceof HasOne || $relation instanceof MorphOne) {
+
                     if (!$this->saveOneNestedAttributes($relation, $stack)) {
                         return false;
                     }
                 } else {
                     if ($relation instanceof HasMany || $relation instanceof MorphMany) {
 
-                        $idsArray      = array_map(function ($stack) {
-                            return isset($stack[$this->primaryKey]) ? $stack[$this->primaryKey] : false;
+                        $modelRelation = $this->$methodName();
+                        $relatedKeyName = $modelRelation->getRelated()->getKeyName();
+                        $idsArray      = array_map(function ($stack) use ($relatedKeyName) {
+                            return isset($stack[$relatedKeyName]) ? $stack[$relatedKeyName] : false;
                         }, $stack);
                         $idsNotDelete  = array_filter($idsArray);
-                        $modelRelation = $this->$methodName();
 
                         //Syncing one-to-many relationships
                         if (count($idsNotDelete) > 0) {
-                            $modelRelation->whereNotIn($this->primaryKey, $idsNotDelete)->delete();
+                            $modelRelation->whereNotIn($relatedKeyName, $idsNotDelete)->delete();
                         } else {
                             $modelRelation->delete();
                         }
-
                         foreach ($stack as $params) {
                             if (!$this->saveManyNestedAttributes($this->$methodName(), $params)) {
                                 return false;
