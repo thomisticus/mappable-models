@@ -41,7 +41,7 @@ trait HasNestedAttributes
     /**
      * Fill the model with an array of attributes.
      *
-     * @param  array $attributes
+     * @param array $attributes
      * @return $this
      *
      * @throws \Illuminate\Database\Eloquent\MassAssignmentException
@@ -58,8 +58,8 @@ trait HasNestedAttributes
             }
 
             if (!empty($this->guarded) || empty($this->guarded) && empty($this->fillable)) {
-	        	$this->guarded = array_merge($this->guarded, $this->nested);
-	        }
+                $this->guarded = array_merge($this->guarded, $this->nested);
+            }
         }
 
         return parent::fill($attributes);
@@ -68,7 +68,7 @@ trait HasNestedAttributes
     /**
      * Save the model to the database.
      *
-     * @param  array $options
+     * @param array $options
      * @return bool
      */
     public function save(array $options = [])
@@ -102,10 +102,10 @@ trait HasNestedAttributes
 
                         $modelRelation = $this->$methodName();
                         $relatedKeyName = $modelRelation->getRelated()->getKeyName();
-                        $idsArray      = array_map(function ($stack) use ($relatedKeyName) {
+                        $idsArray = array_map(function ($stack) use ($relatedKeyName) {
                             return isset($stack[$relatedKeyName]) ? $stack[$relatedKeyName] : false;
                         }, $stack);
-                        $idsNotDelete  = array_filter($idsArray);
+                        $idsNotDelete = array_filter($idsArray);
 
                         //Syncing one-to-many relationships
                         if (count($idsNotDelete) > 0) {
@@ -146,8 +146,8 @@ trait HasNestedAttributes
     /**
      * Save the hasOne nested relation attributes to the database.
      *
-     * @param  Illuminate\Database\Eloquent\Relations $relation
-     * @param  array $params
+     * @param Illuminate\Database\Eloquent\Relations $relation
+     * @param array $params
      * @return bool
      */
     protected function saveBelongToNestedAttributes($relation, array $params)
@@ -172,8 +172,8 @@ trait HasNestedAttributes
     /**
      * Save the hasOne nested relation attributes to the database.
      *
-     * @param  Illuminate\Database\Eloquent\Relations $relation
-     * @param  array $params
+     * @param Illuminate\Database\Eloquent\Relations $relation
+     * @param array $params
      * @return bool
      */
     protected function saveOneNestedAttributes($relation, array $params)
@@ -194,8 +194,8 @@ trait HasNestedAttributes
     /**
      * Save the hasMany nested relation attributes to the database.
      *
-     * @param  Illuminate\Database\Eloquent\Relations $relation
-     * @param  array $params
+     * @param Illuminate\Database\Eloquent\Relations $relation
+     * @param array $params
      * @return bool
      */
     protected function saveManyNestedAttributes($relation, array $params)
@@ -220,8 +220,8 @@ trait HasNestedAttributes
     /**
      * Save the belongsToMany nested relation attributes to the database.
      *
-     * @param  \Illuminate\Database\Eloquent\Model $model
-     * @param  array $params
+     * @param \Illuminate\Database\Eloquent\Model $model
+     * @param array $params
      * @return bool
      */
     protected function saveBelongsToManyNestedAttributes($model, array $params)
@@ -243,7 +243,7 @@ trait HasNestedAttributes
     /**
      * Check can we delete nested data
      *
-     * @param  array $params
+     * @param array $params
      * @return bool
      */
     protected function allowDestroyNestedAttributes(array $params)

@@ -22,6 +22,9 @@ trait HasArrayMappableFormat
         return parent::toArray();
     }
 
+    /**
+     * @return array
+     */
     private function getRemappedColumns()
     {
         $mapped = [];

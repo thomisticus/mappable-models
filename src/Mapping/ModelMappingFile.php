@@ -6,16 +6,23 @@ class ModelMappingFile
 {
     private $content;
 
+    /**
+     * ModelMappingFile constructor.
+     */
     public function __construct()
     {
         $this->loadFile();
     }
 
+    /**
+     * @return mixed
+     */
     private function getFilePath()
     {
         $fileName = config('mappable-models.model_mapping.file');
         return base_path("database/mappings/{$fileName}.php");
     }
+
 
     private function loadFile()
     {
@@ -27,6 +34,10 @@ class ModelMappingFile
         $this->content = include($file);
     }
 
+    /**
+     * @param $key
+     * @return array
+     */
     public function getContent($key): array
     {
         return array_get($this->content, $key);

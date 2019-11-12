@@ -2,12 +2,12 @@
 
 namespace Thomisticus\MappableModels;
 
-use Thomisticus\MappableModels\Mapping\ModelMapping;
-use Thomisticus\MappableModels\Traits\HasArrayMappableFormat;
-use Thomisticus\MappableModels\Traits\HasAutomaticMapping;
 use Illuminate\Database\Eloquent\Model;
 use Sofa\Eloquence\Eloquence;
 use Sofa\Eloquence\Mappable;
+use Thomisticus\MappableModels\Mapping\ModelMapping;
+use Thomisticus\MappableModels\Traits\HasArrayMappableFormat;
+use Thomisticus\MappableModels\Traits\HasAutomaticMapping;
 
 class MappableModel extends Model
 {
@@ -17,6 +17,10 @@ class MappableModel extends Model
 
     protected $sequence;
 
+    /**
+     * MappableModel constructor.
+     * @param array $attributes
+     */
     public function __construct(array $attributes = [])
     {
         // Map columns if mapping is enabled

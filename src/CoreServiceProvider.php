@@ -14,8 +14,8 @@ class CoreServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../config/mappable-models.php' => config_path('mappable-models.php'),
-            __DIR__.'/../config/example.php' => base_path('database/mappings/example.php'),
+            __DIR__ . '/../config/mappable-models.php' => config_path('mappable-models.php'),
+            __DIR__ . '/../config/example.php' => base_path('database/mappings/example.php'),
         ], 'mappable-models');
     }
 
@@ -27,7 +27,7 @@ class CoreServiceProvider extends ServiceProvider
     public function register()
     {
         //
-        $this->mergeConfigFrom( __DIR__.'/../config/mappable-models.php', 'mappable-models');
+        $this->mergeConfigFrom(__DIR__ . '/../config/mappable-models.php', 'mappable-models');
     }
 
     /**
