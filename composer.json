@@ -39,7 +39,8 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
       "scripts": {
-        "phpcs": "./vendor/bin/phpcbf --standard=PSR12 src/ --colors"
+        "phpcs": "./vendor/bin/phpcs src --standard=psr12 --report=diff --colors",
+        "phpcbf": "./vendor/bin/phpcbf src --standard=PSR12 --colors"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.5"
