@@ -2,8 +2,14 @@
 
 namespace Thomisticus\MappableModels\Mapping;
 
+use Illuminate\Support\Arr;
+
 class ModelMappingFile
 {
+    /**
+     * Mapping file content (database/mappings/foo.php")
+     * @var array
+     */
     private $content;
 
     /**
@@ -11,11 +17,14 @@ class ModelMappingFile
      */
     public function __construct()
     {
-        $this->loadFile();
+        $this->loadFileContent();
     }
 
     /**
-     * @return mixed
+     * Retrieves the mapping file path according to it's name on config file.
+     * Usually this file is stored at: "database/mappings/" folder.
+     *
+     * @return string
      */
     private function getFilePath()
     {
@@ -23,10 +32,13 @@ class ModelMappingFile
         return base_path("database/mappings/{$fileName}.php");
     }
 
-
-    private function loadFile()
+    /**
+     * Loads $content class' property. According to the mapping file.
+     */
+    private function loadFileContent()
     {
         $file = $this->getFilePath();
+
         if (is_null($file)) {
             throw new \RuntimeException("Mapping file {$file} is not defined");
         }
@@ -35,11 +47,13 @@ class ModelMappingFile
     }
 
     /**
-     * @param $key
+     * Retrieves the content of a specific key inside $content array property
+     *
+     * @param string $key
      * @return array
      */
     public function getContent($key): array
     {
-        return array_get($this->content, $key);
+        return Arr::get($this->content, $key);
     }
 }

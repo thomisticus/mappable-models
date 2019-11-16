@@ -2,6 +2,12 @@
     "name": "thomisticus/mappable-models",
     "description": "A package of classes that help to fix some common problems found in laravel architecture, using eloquent models.",
     "type": "library",
+    "repositories": [
+      {
+        "type": "vcs",
+        "url": "git@github.com:thomisticus/eloquence-mappable.git"
+      }
+    ],
     "authors": [
       {
         "name": "Philippe Vanzin Moreira",
@@ -12,9 +18,9 @@
         "email": "igor.sgm@gmail.com"
       }
     ],
-    "require": {
-        "sofa/eloquence-mappable": "^5.6"
-    },
+   "require": {
+     "thomisticus/eloquence-mappable": "dev-master"
+   },
     "autoload": {
         "psr-4": {
             "Thomisticus\\MappableModels\\": "src/"

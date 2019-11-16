@@ -18,8 +18,10 @@ class MappableModel extends Model
     protected $sequence;
 
     /**
-     * MappableModel constructor.
+     * Create a new Eloquent model instance.
+     *
      * @param array $attributes
+     * @return void
      */
     public function __construct(array $attributes = [])
     {
@@ -33,12 +35,12 @@ class MappableModel extends Model
     private function mapModel()
     {
         if (ModelMapping::isEnabled()) {
-            $mm = new ModelMapping($this->getTable());
+            $modelMapping = new ModelMapping($this->getTable());
 
-            $this->table = $mm->getTable();
-            $this->primaryKey = $mm->getPrimaryKey();
-            $this->maps = $mm->getMappings();
-            $this->sequence = $mm->getSequence();
+            $this->table = $modelMapping->getTable();
+            $this->primaryKey = $modelMapping->getPrimaryKey();
+            $this->maps = $modelMapping->getMappings();
+            $this->sequence = $modelMapping->getSequence();
         }
     }
 }

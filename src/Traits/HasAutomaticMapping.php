@@ -2,6 +2,8 @@
 
 namespace Thomisticus\MappableModels\Traits;
 
+use Illuminate\Support\Arr;
+
 trait HasAutomaticMapping
 {
     /**
@@ -16,7 +18,7 @@ trait HasAutomaticMapping
      */
     public function getUpdatedAtColumn()
     {
-        if ($value = array_get($this->maps, 'updated_at')) {
+        if ($value = Arr::get($this->maps, 'updated_at')) {
             return $value;
         }
 
@@ -30,7 +32,7 @@ trait HasAutomaticMapping
      */
     public function getCreatedAtColumn()
     {
-        if ($value = array_get($this->maps, 'created_at')) {
+        if ($value = Arr::get($this->maps, 'created_at')) {
             return $value;
         }
 

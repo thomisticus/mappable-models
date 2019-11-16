@@ -2,11 +2,12 @@
 
 namespace Thomisticus\MappableModels\Traits;
 
-
 trait HasArrayMappableFormat
 {
     /**
-     * @return mixed
+     * Convert the model instance to an array.
+     *
+     * @return array
      */
     public function toArray()
     {
@@ -23,6 +24,7 @@ trait HasArrayMappableFormat
     }
 
     /**
+     * Retrieves the array of remapped columns
      * @return array
      */
     private function getRemappedColumns()
@@ -30,7 +32,7 @@ trait HasArrayMappableFormat
         $mapped = [];
         $flippedMaps = array_flip($this->getMaps());
         foreach (parent::toArray() as $index => $data) {
-            // TODO colocar aqui a opção de verificar se está em caixa alta o valor da index de acordo com a config
+            // TODO put here the option to check if the index value is in upper case according to the config
             $index = strtoupper($index);
             if (array_key_exists($index, $flippedMaps)) {
                 $mapped[$flippedMaps[$index]] = $data;

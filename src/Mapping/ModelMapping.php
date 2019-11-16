@@ -2,9 +2,12 @@
 
 namespace Thomisticus\MappableModels\Mapping;
 
+use Illuminate\Support\Arr;
+
 class ModelMapping
 {
     /**
+     * Database mapping file content. i.e.: config/example.php
      * @var array
      */
     private $content = [];
@@ -20,6 +23,7 @@ class ModelMapping
     }
 
     /**
+     * Check if model_mapping is enabled according to config file
      * @return mixed
      */
     public static function isEnabled()
@@ -28,27 +32,32 @@ class ModelMapping
     }
 
     /**
+     * Retrieves table name from database mappings file content
+     *
      * @return string
      */
     public function getTable(): string
     {
-        return array_get($this->content, 'table');
+        return Arr::get($this->content, 'table');
     }
 
     /**
+     * Retrieves primary key name from database mappings file content
+     *
      * @return string
      */
     public function getPrimaryKey(): string
     {
-        return array_get($this->content, 'primary');
+        return Arr::get($this->content, 'primary');
     }
 
     /**
+     * Retrieves column mappings according to mappings file content
      * @return array
      */
     public function getMappings(): array
     {
-        $mapping = array_get($this->content, 'columns');
+        $mapping = Arr::get($this->content, 'columns');
         if (config('mappable-models.model_mapping.uppercase')) {
             return array_map(function ($item) {
                 return strtoupper($item);
@@ -59,10 +68,11 @@ class ModelMapping
     }
 
     /**
+     * Retrieves the sequences from database mappings file content
      * @return string
      */
     public function getSequence(): string
     {
-        return array_get($this->content, 'sequence');
+        return Arr::get($this->content, 'sequence');
     }
 }

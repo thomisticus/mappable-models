@@ -26,7 +26,6 @@ class CoreServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
         $this->mergeConfigFrom(__DIR__ . '/../config/mappable-models.php', 'mappable-models');
     }
 
