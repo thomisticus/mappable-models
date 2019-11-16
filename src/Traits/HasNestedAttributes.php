@@ -93,13 +93,11 @@ trait HasNestedAttributes
                 }
             } else {
                 if ($relation instanceof HasOne || $relation instanceof MorphOne) {
-
                     if (!$this->saveOneNestedAttributes($relation, $stack)) {
                         return false;
                     }
                 } else {
                     if ($relation instanceof HasMany || $relation instanceof MorphMany) {
-
                         $modelRelation = $this->$methodName();
                         $relatedKeyName = $modelRelation->getRelated()->getKeyName();
                         $idsArray = array_map(function ($stack) use ($relatedKeyName) {
@@ -118,15 +116,14 @@ trait HasNestedAttributes
                                 return false;
                             }
                         }
-
                     } else {
-
                         if ($relation instanceof BelongsToMany) {
-
                             $idsNesteds = [];
                             foreach ($stack as $params) {
-                                $idsNesteds[] = $this->saveBelongsToManyNestedAttributes($this->$methodName()->getModel(),
-                                    $params);
+                                $idsNesteds[] = $this->saveBelongsToManyNestedAttributes(
+                                    $this->$methodName()->getModel(),
+                                    $params
+                                );
                             }
 
                             $this->$methodName()->sync($idsNesteds);

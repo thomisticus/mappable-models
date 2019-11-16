@@ -37,5 +37,11 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+      "scripts": {
+        "phpcs": "./vendor/bin/phpcbf --standard=PSR12 src/ --colors"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.5"
+    }
 }

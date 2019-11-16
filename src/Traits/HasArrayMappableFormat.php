@@ -12,7 +12,6 @@ trait HasArrayMappableFormat
     public function toArray()
     {
         if (method_exists($this, 'getMaps')) {
-
             if (count($this->getMaps()) === 0) {
                 return parent::toArray();
             }
